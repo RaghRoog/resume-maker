@@ -1,0 +1,95 @@
+.home{
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+    align-items: center;
+    
+    .resume-mockup{
+        width: min(25rem, 80vw);
+        background-color: white;
+        box-shadow: 3px 3px 10px -5px grey;
+        transform: rotate(1deg);
+        padding: 1rem;
+        transition: $transition;
+        &:hover{
+            transform: rotate(0deg);
+        }
+
+        .top{
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            .img{
+                width: 100px;
+                height: 120px;
+                background-color: $primary;
+            }
+            .info{
+                display: flex;
+                flex-direction: column;
+                gap: .2rem;
+                width: 80%;
+                div{
+                    height: 20px;
+                    width: 95%;
+                    background-color: $secondary;
+                    &:nth-child(2){
+                        width: 70%;
+                    }
+                    &:last-child{
+                        width: 80%;
+                    }
+                }
+            }
+        }
+        
+        .bottom{
+            display: flex;
+            .left{
+                width: 30%;
+                display: flex;
+                flex-direction: column;
+                border-right: 2px solid $text;
+                div{
+                    height: 20px;
+                    width: 90%;
+                    background-color: $accent;
+                    margin-bottom: 1rem;
+                    &:nth-child(odd){
+                        height: 10px;
+                        width: 70%;
+                        margin-bottom: 2px;
+                    }
+                }
+            }
+    
+            .right{
+                padding-left: 1rem;
+                width: 70%;
+                .section{
+    
+                    div{
+                        height: 20px;
+                        width: 80%;
+                        background-color: $accent;
+                        margin-bottom: 1rem;
+                        &:first-child{
+                            width: 30%;
+                            height: 10px;
+                            background-color: $secondary;
+                            margin-bottom: 2px;
+                        }
+                    }
+                }
+            }
+        }
+    
+    }
+}
+
+@media only screen and (max-width: 900px){
+    .home{
+        margin-top: 1rem;
+        flex-direction: column;
+    }
+}
