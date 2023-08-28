@@ -3,6 +3,7 @@
     gap: 2rem;
     justify-content: space-around;
     align-items: center;
+    min-height: 100vh;
     
     .resume-mockup{
         width: min(25rem, 80vw);
@@ -89,7 +90,6 @@
 
 @media only screen and (max-width: 900px){
     .home{
-        margin-top: 1rem;
         flex-direction: column;
     }
 }

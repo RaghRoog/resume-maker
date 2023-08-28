@@ -6,14 +6,14 @@
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
-    flex: 1;
+}
+html{
+    scroll-behavior: smooth;
+    overflow-y: hidden;
 }
 .App{
     background-color: $background;
     color: $text;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 h1{
     max-width: 600px;
