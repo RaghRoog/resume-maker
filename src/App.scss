@@ -1,4 +1,4 @@
-@import './styles/variables.scss', './styles/home.scss';
+@import './styles/variables.scss', './styles/home.scss', './styles/styleSelection.scss';
 
 
 .container{
@@ -9,7 +9,6 @@
 }
 html{
     scroll-behavior: smooth;
-    overflow-y: hidden;
 }
 .App{
     background-color: $background;

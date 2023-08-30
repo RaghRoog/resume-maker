@@ -7,10 +7,10 @@ export default function Home() {
                 <h1>Make your Resume</h1>
                 <p>
                     With this app you can easily make your resume for free! 
-                    Choose your preferred color and layout, enter your information 
+                    Choose your preferred layout, enter your details
                     and download your Resume in pdf format.
                 </p>
-                <button className="btn-primary">Start now!</button>
+                <a href="#styleSelection"><button className="btn-primary">Start now!</button></a>
             </div>
             <div className="resume-mockup">
                 <div className="top">
