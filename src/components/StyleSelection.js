@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 
 
-export default function StyleSelection() {
+export default function StyleSelection({ getTemplate }) {
 
     let [template, setTemplate] = useState(0)
     let [isBtnDisabled, setIsBtnDisabled] = useState(true)
 
     function chooseTemplate(template) {
         setTemplate(template)
+        getTemplate(template)
     }
 
     function selectedTemplate() {
@@ -37,7 +38,7 @@ export default function StyleSelection() {
                 <img id="template-img" onClick={()=> chooseTemplate(2)} src="imgs/templates/template2.png" alt="template 1" />
                 <img id="template-img" onClick={()=> chooseTemplate(3)} src="imgs/templates/template3.png" alt="template 1" />
             </div>
-            <button disabled={isBtnDisabled} className="btn-primary">Next</button>
+            <a href="#inputSection"><button disabled={isBtnDisabled} className="btn-primary">Next</button></a>
         </div>
     )
 }

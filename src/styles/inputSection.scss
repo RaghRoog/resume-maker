@@ -1,0 +1,41 @@
+.input-section{
+    margin-top: 50vh;
+    min-height: 100vh;
+
+    .input-container{
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+        width: 30%;
+    }
+
+    .form-container{
+        border: 2px solid $secondary;
+        padding: .5rem;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+    }
+    .expand{
+        font-size: 1.2rem;
+        font-family: $p-font;
+        color: $accent;
+        width: fit-content;
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    .input-section{
+        .input-container{
+            width: 45%;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .input-section{
+        .input-container{
+            width: 90%;
+        }
+    }
+}
