@@ -114,7 +114,15 @@ export default function InputSection({ getIsGenerated, getInputsData }) {
 
     //taking user input
     //details
-    let [detailsInput, setDetailsInput] = useState({})
+    let [detailsInput, setDetailsInput] = useState({
+        fname: '',
+        lname: '',
+        email: '',
+        tel: '',
+        address: '',
+        city: '',
+        country: ''
+    })
     function getDetails(key, value){
         setDetailsInput({...detailsInput, [key]: value})
     }
@@ -206,6 +214,7 @@ export default function InputSection({ getIsGenerated, getInputsData }) {
             job: jobInput,
             courses: coursesInput
         }
+        console.log(inputData)
         getInputsData(inputData)
     }
 
