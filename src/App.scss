@@ -87,6 +87,7 @@ select{
     border: 0;
     padding: .2rem;
     outline: transparent;
+    font-size: 1rem;
 }
 .btn-primary{
     border: 0;
@@ -97,6 +98,32 @@ select{
     &:hover{
         box-shadow: 0px 15px 60px -12px $primary;
         transform: translateY(-2px);
+    }
+}
+.download-link{
+    font-family: $p-font;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    color: $primary;
+    font-weight: bold;
+    transition: $transition;
+    position: relative;
+    display: inline-block;
+    &::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: $primary;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out; 
+    }
+    &:hover::after{
+        transform: scaleX(1);
+        transform-origin: bottom left;
     }
 }
 .btn-secondary{
@@ -119,6 +146,7 @@ select{
     color: white;
     margin-top: .2rem;
     transition: $transition;
+    margin-top: 1rem;
 
     &:hover{
         transform: translateY(3px);
