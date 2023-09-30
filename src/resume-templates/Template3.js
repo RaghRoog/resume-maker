@@ -4,7 +4,7 @@ import { Document, Font, Image, Link, Page, StyleSheet, Text, View } from '@reac
 import fontRegular from '../fonts/ibmPlexSans/IBMPlexSans-Regular.ttf'
 import fontBold from '../fonts/ibmPlexSans/IBMPlexSans-Bold.ttf'
 
-export default function Template3() {
+export default function Template3({ inputsData }) {
 
 
      Font.register({ family: 'regular', src: fontRegular })
@@ -16,118 +16,112 @@ export default function Template3() {
                 <View style={styles.top}>
                     <Image style={{width: '60pt', height: 'auto', borderRadius: '5px'}} 
                         src='../imgs/template-img.jpg'/>
-                    <Text style={{fontFamily: 'bold', fontSize: '24px'}}>John Doe</Text>
-                </View>
-                <View style={styles.infoSection}>
-                    <Text style={styles.infoSectionItem}>Address, City, Country</Text>
-                    <Text style={styles.infoSectionItem}>E-mail</Text>
-                    <Text style={styles.infoSectionItem}>Phone number</Text>
-                    <Link style={styles.link} src=''>link1</Link>
-                    <Link style={styles.link} src=''>link2</Link>
-                </View>
-                <View style={styles.section}>
-                    <Text style={styles.header}>Profile</Text>
-                    <Text>
-                        Sint eiusmod laboris adipisicing nostrud id officia ex incididunt in excepteur. Enim id laborum veniam proident anim. Reprehenderit fugiat labore eu eiusmod incididunt sunt nostrud occaecat deserunt veniam sunt ipsum non minim. Elit incididunt minim cillum anim amet laboris esse consectetur. Occaecat exercitation nisi elit pariatur voluptate irure quis.
+                    <Text style={{fontFamily: 'bold', fontSize: '24px'}}>
+                        {`${inputsData.details.fname} ${inputsData.details.lname}`}
                     </Text>
                 </View>
-                <View style={styles.section}>
-                    <Text style={styles.header}>Education</Text>
-                    <View style={styles.sectionContainer}>
-                        <Text>Degree, School, City</Text>
-                        <Text style={styles.textSmall}>06.2020 - 05.2023</Text>
-                        <Text>Description</Text>
-                    </View>
-                    <View style={styles.sectionContainer}>
-                        <Text>Degree2, School2, City2</Text>
-                        <Text style={styles.textSmall}>06.2020 - 05.2023</Text>
-                        <Text>Description</Text>
-                    </View>
+                <View style={styles.infoSection}>
+                    <Text style={styles.infoSectionItem}>
+                        {`${inputsData.details.address}, ${inputsData.details.city}, 
+                        ${inputsData.details.country}`}
+                    </Text>
+                    <Text style={styles.infoSectionItem}>{`${inputsData.details.email}`}</Text>
+                    <Text style={styles.infoSectionItem}>{`${inputsData.details.tel}`}</Text>
+                    {inputsData.links.map(link => (
+                        <Link style={styles.link} src={link.link}>{link.name}</Link>
+                    ))}
                 </View>
-                <View style={styles.section}>
-                    <Text style={styles.header}>Employment History</Text>
-                    <View style={styles.sectionContainer}>
-                        <Text>Job title, Employer, City</Text>
-                        <Text style={styles.textSmall}>03.2019 - 03.2020</Text>
-                        <Text>Description</Text>
-                    </View>
-                    <View style={styles.sectionContainer}>
-                        <Text>Job Title2, Employer2, City2</Text>
-                        <Text style={styles.textSmall}>03.2020 - 02.2022</Text>
-                        <Text>Description</Text>
-                    </View>
-                </View>
-                <View style={styles.section}>
-                    <Text style={styles.header}>Courses</Text>
-                    <View style={styles.sectionContainer}>
-                        <Text>Course, Institution</Text>
-                        <Text style={styles.textSmall}>03.2019 - 03.2020</Text>
-                        <Text>Description</Text>
-                    </View>
-                </View>
-                <View style={styles.section}>
-                    <Text style={styles.header}>Certificates</Text>
-                    <View style={styles.sectionContainer}>
-                        <Text>Certificate</Text>
-                    </View>
-                </View>
-                <View style={styles.section}>
+                {inputsData.about != '' ?  
+                    <View style={styles.section}>
+                        <Text style={styles.header}>Profile</Text>
+                        <Text>
+                            {inputsData.about}
+                        </Text>
+                    </View> : null
+                }   
+                {inputsData.edu.length > 0 ? 
+                    <View style={styles.section}>
+                        <Text style={styles.header}>Education</Text>
+                        {inputsData.edu.map(edu => (
+                            <View style={styles.sectionContainer}>
+                                <Text>
+                                    {`${edu.Degree}, ${edu.School}, ${edu.City}`}
+                                </Text>
+                                <Text style={styles.textSmall}>
+                                    {`${edu.StartDate} - ${edu.EndDate}`}
+                                </Text>
+                                <Text>{`${edu.desc}`}</Text>
+                            </View>
+                        ))}  
+                    </View> : null
+                } 
+                {inputsData.job.length > 0 ?
+                    <View style={styles.section}>
+                        <Text style={styles.header}>Employment History</Text>
+                        {inputsData.job.map(job => (
+                            <View style={styles.sectionContainer}>
+                                <Text>
+                                    {`${job['Job title']}, ${job.Employer}, ${job.City}`}
+                                </Text>
+                                <Text style={styles.textSmall}>
+                                    {`${job.StartDate} - ${job.EndDate}`}
+                                </Text>
+                                <Text>{job.desc}</Text>
+                            </View>
+                        ))}
+                    </View> : null
+                }
+                {inputsData.courses.length > 0 ? 
+                    <View style={styles.section}>
+                        <Text style={styles.header}>Courses</Text>
+                        {inputsData.courses.map(course => (
+                            <View style={styles.sectionContainer}>
+                                <Text>
+                                    {`${course.Course}, ${course.Institution}`}
+                                </Text>
+                                <Text style={styles.textSmall}>
+                                    {`${course.StartDate} - ${course.EndDate}`}
+                                </Text>
+                                <Text>{course.desc}</Text>
+                            </View>
+                        ))}
+                    </View> : null
+                }
+                {inputsData.certificates.length > 0 ? 
+                    <View style={styles.section}>
+                        <Text style={styles.header}>Certificates</Text>
+                        {inputsData.certificates.map(certificate => (
+                            <View style={styles.sectionContainer}>
+                                <Text>{certificate.cert}</Text>
+                            </View>
+                        ))}
+                    </View> : null
+                }
+                {inputsData.skills.length > 0 ?
+                    <View style={styles.section}>
                     <Text style={styles.header}>Skills</Text>
                     <View style={styles.skillsContainer}>
-                        <View style={styles.skill}>
-                            <Text>HTML</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>React</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>CSS</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>JavaScript</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>Responsive Web Design</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>PHP</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>Microsoft Office</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>Windows Server</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>Linux</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>Sass</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>Git</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>MySQL</Text>
-                        </View>
-                        <View style={styles.skill}>
-                            <Text>Webpack</Text>
-                        </View>
+                        {inputsData.skills.map(skill => (
+                            <View style={styles.skill}>
+                                <Text>{skill.skillName}</Text>
+                            </View>
+                        ))}
                     </View>
-                </View>
-                <View style={styles.section}>
+                    </View> : null
+                }
+                {inputsData.languages.length > 0 ?
+                    <View style={styles.section}>
                     <Text style={styles.header}>Languages</Text>
-                    <View style={styles.sectionContainer}>
-                        <View>
-                            <Text>Polish</Text>
-                            <Text style={styles.textSmall}>Native speaker</Text>
-                        </View>
-                        <View>
-                            <Text>English</Text>
-                            <Text style={styles.textSmall}>B2</Text>
-                        </View>
-                    </View>
-                </View>
+                        {inputsData.languages.map(lang => (
+                            <View style={styles.sectionContainer}>
+                                <View>
+                                    <Text>{lang.language}</Text>
+                                    <Text style={styles.textSmall}>{lang.langLvl}</Text>
+                                </View>
+                            </View>
+                        ))}
+                    </View> : null
+                }
             </Page>
         </Document>
     )
