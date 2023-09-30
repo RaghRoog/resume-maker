@@ -314,10 +314,10 @@ export default function InputSection({ getIsGenerated, getInputsData }) {
                                 name="skillLvl" id="sklil"
                             >
                                 <option>Choose your level</option>
-                                <option value="basics">Basics</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="advanced">Advanced</option>
-                                <option value="expert">Expert</option>
+                                <option value="Basics">Basics</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                                <option value="Expert">Expert</option>
                             </select>
                         </form>
                         <button onClick={()=>deleteSkillOrLang(skill.id, 'skill')} className="delete-btn">Delete</button>
@@ -337,10 +337,10 @@ export default function InputSection({ getIsGenerated, getInputsData }) {
                                 id="lang" style={{minWidth: '150px'}}
                             >
                                 <option>Choose your level</option>
-                                <option value="basics">Basics</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="advanced">Advanced</option>
-                                <option value="expert">Expert</option>
+                                <option value="Basics">Basics</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                                <option value="Expert">Expert</option>
                             </select>
                         </form>
                         <button onClick={()=>deleteSkillOrLang(lang.id, 'lang')} className="delete-btn">Delete</button>
