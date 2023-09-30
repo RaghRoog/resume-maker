@@ -17,12 +17,12 @@ export default function Template3({ inputsData }) {
                     <Image style={{width: '60pt', height: 'auto', borderRadius: '5px'}} 
                         src='../imgs/template-img.jpg'/>
                     <Text style={{fontFamily: 'bold', fontSize: '24px'}}>
-                        {`${inputsData.details.fname} ${inputsData.details.lname}`}
+                        {`${inputsData.details.fname } ${inputsData.details.lname}`}
                     </Text>
                 </View>
                 <View style={styles.infoSection}>
                     <Text style={styles.infoSectionItem}>
-                        {`${inputsData.details.address}, ${inputsData.details.city}, 
+                        {`${inputsData.details.address} ${inputsData.details.city} 
                         ${inputsData.details.country}`}
                     </Text>
                     <Text style={styles.infoSectionItem}>{`${inputsData.details.email}`}</Text>
@@ -45,12 +45,12 @@ export default function Template3({ inputsData }) {
                         {inputsData.edu.map(edu => (
                             <View style={styles.sectionContainer}>
                                 <Text>
-                                    {`${edu.Degree}, ${edu.School}, ${edu.City}`}
+                                    {`${edu.Degree || ''}${edu.Degree && edu.School ? ', ' : ' '}${edu.School || ''}${edu.School && edu.City ? ', ' : ' '}${edu.City || ''}`}
                                 </Text>
                                 <Text style={styles.textSmall}>
-                                    {`${edu.StartDate} - ${edu.EndDate}`}
+                                    {`${edu.StartDate || ''} - ${edu.EndDate || 'present'}`}
                                 </Text>
-                                <Text>{`${edu.desc}`}</Text>
+                                <Text>{edu.desc || ''}</Text>
                             </View>
                         ))}  
                     </View> : null
@@ -61,12 +61,12 @@ export default function Template3({ inputsData }) {
                         {inputsData.job.map(job => (
                             <View style={styles.sectionContainer}>
                                 <Text>
-                                    {`${job['Job title']}, ${job.Employer}, ${job.City}`}
+                                    {`${job['Job title'] || ''}${job['Job title'] && job.Employer ? ', ' : ' '}${job.Employer || ''}${job.Employer && job.City ? ', ' : ' '}${job.City || ''}`}
                                 </Text>
                                 <Text style={styles.textSmall}>
-                                    {`${job.StartDate} - ${job.EndDate}`}
+                                    {`${job.StartDate || ''} - ${job.EndDate || 'present'}`}
                                 </Text>
-                                <Text>{job.desc}</Text>
+                                <Text>{job.desc || ''}</Text>
                             </View>
                         ))}
                     </View> : null
@@ -77,12 +77,12 @@ export default function Template3({ inputsData }) {
                         {inputsData.courses.map(course => (
                             <View style={styles.sectionContainer}>
                                 <Text>
-                                    {`${course.Course}, ${course.Institution}`}
+                                    {`${course.Course || ''}${course.Course && course.Institution ? ', ' : ' '}${course.Institution || ''}`}
                                 </Text>
                                 <Text style={styles.textSmall}>
-                                    {`${course.StartDate} - ${course.EndDate}`}
+                                    {`${course.StartDate || ''} - ${course.EndDate || 'present'}`}
                                 </Text>
-                                <Text>{course.desc}</Text>
+                                <Text>{course.desc || ''}</Text>
                             </View>
                         ))}
                     </View> : null
@@ -92,7 +92,7 @@ export default function Template3({ inputsData }) {
                         <Text style={styles.header}>Certificates</Text>
                         {inputsData.certificates.map(certificate => (
                             <View style={styles.sectionContainer}>
-                                <Text>{certificate.cert}</Text>
+                                <Text>{certificate.cert || ''}</Text>
                             </View>
                         ))}
                     </View> : null
@@ -103,7 +103,7 @@ export default function Template3({ inputsData }) {
                     <View style={styles.skillsContainer}>
                         {inputsData.skills.map(skill => (
                             <View style={styles.skill}>
-                                <Text>{skill.skillName}</Text>
+                                <Text>{skill.skillName || ''}</Text>
                             </View>
                         ))}
                     </View>
@@ -115,8 +115,8 @@ export default function Template3({ inputsData }) {
                         {inputsData.languages.map(lang => (
                             <View style={styles.sectionContainer}>
                                 <View>
-                                    <Text>{lang.language}</Text>
-                                    <Text style={styles.textSmall}>{lang.langLvl}</Text>
+                                    <Text>{lang.language || ''}</Text>
+                                    <Text style={styles.textSmall}>{lang.langLvl || ''}</Text>
                                 </View>
                             </View>
                         ))}
