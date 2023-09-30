@@ -23,7 +23,7 @@ function App() {
     setInputsData(data)
   }
 
-  let templates = [<Template1/>, <Template2 inputsData={inputsData}/>, <Template3 inputsData={inputsData}/>]
+  let templates = [<Template1 inputsData={inputsData}/>, <Template2 inputsData={inputsData}/>, <Template3 inputsData={inputsData}/>]
 
   return (
     <div className="App">

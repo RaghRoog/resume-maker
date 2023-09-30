@@ -4,10 +4,29 @@ import { Document, Font, Image, Link, Page, StyleSheet, Text, View } from '@reac
 import fontRegular from '../fonts/Poppins/Poppins-Regular.ttf'
 import fontBold from '../fonts/Poppins/Poppins-SemiBold.ttf'
 
-export default function Template1() {
+export default function Template1({ inputsData }) {
 
     Font.register({ family: 'Poppins-regular', src: fontRegular })
     Font.register({ family: 'Poppins-bold', src: fontBold })
+
+    function calcWidthProcent(lvl){
+        let percent
+        switch(lvl){
+            case 'Basics':
+                percent = '25%'
+                break
+            case 'Intermediate':
+                percent = '50%'
+                break
+            case 'Advanced':
+                percent = '75%'
+                break
+            case 'Expert':
+                percent = '100%'
+                break
+        }
+        return percent
+    }
 
     return(
         <Document>
@@ -16,99 +35,121 @@ export default function Template1() {
                     <View style={styles.leftTop}>
                         <Image style={{width: '40pt', height: 'auto', borderRadius: '50%'}} 
                                 src='../imgs/template-img.jpg'/>
-                        <Text style={{fontFamily: 'Poppins-bold', fontSize: '20px'}}>John Doe</Text>
-                    </View>
-                    <View style={styles.section}>
-                        <Text style={styles.header}>Profile</Text>
-                        <Text>
-                            Sint eiusmod laboris adipisicing nostrud id officia ex incididunt in excepteur. Enim id laborum veniam proident anim. Reprehenderit fugiat labore eu eiusmod incididunt sunt nostrud occaecat deserunt veniam sunt ipsum non minim. Elit incididunt minim cillum anim amet laboris esse consectetur. Occaecat exercitation nisi elit pariatur voluptate irure quis.
+                        <Text style={{fontFamily: 'Poppins-bold', fontSize: '20px'}}>
+                            {`${inputsData.details.fname} ${inputsData.details.lname}`}
                         </Text>
                     </View>
-                    <View style={styles.section}>
-                        <Text style={styles.header}>Education</Text>
-                        <View style={styles.sectionContainer}>
-                            <Text>Degree, School, City</Text>
-                            <Text style={styles.textSmall}>06.2020 - 05.2023</Text>
-                            <Text>Description</Text>
-                        </View>
-                        <View style={styles.sectionContainer}>
-                            <Text>Degree2, School2, City2</Text>
-                            <Text style={styles.textSmall}>06.2022 - 02.2023</Text>
-                            <Text>Description</Text>
-                        </View>
-                    </View>
-                    <View style={styles.section}>
+                    {inputsData.about != '' ?
+                        <View style={styles.section}>
+                            <Text style={styles.header}>Profile</Text>
+                            <Text>
+                            {inputsData.about}
+                            </Text>
+                        </View> : null
+                    }
+                    {inputsData.edu.length > 0 ?
+                        <View style={styles.section}>
+                            <Text style={styles.header}>Education</Text>
+                            {inputsData.edu.map(edu => (
+                                <View style={styles.sectionContainer}>
+                                    <Text>
+                                        {`${edu.Degree || ''}${edu.Degree && edu.School ? ', ' : ' '}${edu.School || ''}${edu.School && edu.City ? ', ' : ' '}${edu.City || ''}`}
+                                    </Text>
+                                    <Text style={styles.textSmall}>
+                                        {`${edu.StartDate || ''} - ${edu.EndDate || 'present'}`}
+                                    </Text>
+                                    <Text>{edu.desc || ''}</Text>
+                                </View>
+                            ))}
+                        </View> : null
+                    }
+                    {inputsData.job.length > 0 ?
+                        <View style={styles.section}>
                         <Text style={styles.header}>Employment History</Text>
-                        <View style={styles.sectionContainer}>
-                            <Text>Job title, Employer, City</Text>
-                            <Text style={styles.textSmall}>03.2019 - 03.2020</Text>
-                            <Text>Description</Text>
-                        </View>
-                        <View style={styles.sectionContainer}>
-                            <Text>Job Title2, Employer2, City2</Text>
-                            <Text style={styles.textSmall}>03.2020 - 02.2022</Text>
-                            <Text>Description</Text>
-                        </View>
-                    </View>
-                    <View style={styles.section}>
-                        <Text style={styles.header}>Courses</Text>
-                        <View style={styles.sectionContainer}>
-                            <Text>Course, Institution</Text>
-                            <Text style={styles.textSmall}>03.2019 - 03.2020</Text>
-                            <Text>Description</Text>
-                        </View>
-                    </View>
-                    <View style={styles.section}>
-                        <Text style={styles.header}>Certificates</Text>
-                        <View style={styles.sectionContainer}>
-                            <Text>Certificate</Text>
-                        </View>
-                    </View>
+                            {inputsData.job.map(job => (
+                                <View style={styles.sectionContainer}>
+                                <Text>
+                                    {`${job['Job title'] || ''}${job['Job title'] && job.Employer ? ', ' : ' '}${job.Employer || ''}${job.Employer && job.City ? ', ' : ' '}${job.City || ''}`}
+                                </Text>
+                                <Text style={styles.textSmall}>
+                                    {`${job.StartDate || ''} - ${job.EndDate || 'present'}`}
+                                </Text>
+                                <Text>{job.desc || ''}</Text>
+                            </View>
+                            ))}
+                        </View> : null
+                    }
+                    {inputsData.courses.length > 0 ?
+                        <View style={styles.section}>
+                            <Text style={styles.header}>Courses</Text>
+                            {inputsData.courses.map(course => (
+                                <View style={styles.sectionContainer}>
+                                    <Text>
+                                        {`${course.Course || ''}${course.Course && course.Institution ? ', ' : ' '}${course.Institution || ''}`}
+                                    </Text>
+                                    <Text style={styles.textSmall}>
+                                        {`${course.StartDate || ''} - ${course.EndDate || 'present'}`}
+                                    </Text>
+                                    <Text>{course.desc || ''}</Text>
+                                </View>
+                            ))}
+                        </View> : null
+                    }
+                    {inputsData.certificates.length > 0 ?
+                        <View style={styles.section}>
+                            <Text style={styles.header}>Certificates</Text>
+                            {inputsData.certificates.map(certificate => (
+                                <View style={styles.sectionContainer}>
+                                <Text>{certificate.cert || ''}</Text>
+                            </View>
+                            ))}
+                        </View> : null
+                    }
                 </View>
                 <View style={styles.right}>
                     <View style={styles.rightSection}>
                         <Text style={styles.rightHeader}>Details</Text>
-                        <Text>Address</Text>
-                        <Text>City</Text>
-                        <Text>Country</Text>
-                        <Text>Phone number</Text>
-                        <Text>e-mail</Text>
+                        <Text>{inputsData.details.address}</Text>
+                        <Text>{inputsData.details.city}</Text>
+                        <Text>{inputsData.details.country}</Text>
+                        <Text>{inputsData.details.tel}</Text>
+                        <Text>{inputsData.details.email}</Text>
                     </View>
-                    <View style={styles.rightSection}>
-                        <Text style={styles.rightHeader}>Links</Text>
-                        <Link style={styles.link} src=''>Link1</Link>
-                        <Link style={styles.link} src=''>Link2</Link>
-                    </View>
-                    <View style={styles.rightSection}>
-                        <Text style={styles.rightHeader}>Skills</Text>
-                        <View style={styles.skillContainer}>
-                            <Text>Skill1</Text>
-                            <View style={{width: '100%', height: '3px', backgroundColor: 'white'}}></View>
-                        </View>
-                        <View style={styles.skillContainer}>
-                            <Text>Skill2</Text>
-                            <View style={{width: '50%', height: '3px', backgroundColor: 'white'}}></View>
-                        </View>
-                        <View style={styles.skillContainer}>
-                            <Text>Skill3</Text>
-                            <View style={{width: '25%', height: '3px', backgroundColor: 'white'}}></View>
-                        </View>
-                        <View style={styles.skillContainer}>
-                            <Text>Skill4</Text>
-                            <View style={{width: '75%', height: '3px', backgroundColor: 'white'}}></View>
-                        </View>
-                    </View>
-                    <View style={styles.rightSection}>
-                        <Text style={styles.rightHeader}>Languages</Text>
-                        <View style={styles.skillContainer}>
-                            <Text>Polish</Text>
-                            <View style={{width: '100%', height: '3px', backgroundColor: 'white'}}></View>
-                        </View>
-                        <View style={styles.skillContainer}>
-                            <Text>English</Text>
-                            <View style={{width: '75%', height: '3px', backgroundColor: 'white'}}></View>
-                        </View>
-                    </View>
+                    {inputsData.links.length > 0 ?
+                        <View style={styles.rightSection}>
+                            <Text style={styles.rightHeader}>Links</Text>
+                            {inputsData.links.map(link => (
+                                <Link style={styles.link} src={link.link}>{link.name}</Link>
+                            ))}
+                        </View> : null
+                    }
+                    {inputsData.skills.length > 0 ?
+                        <View style={styles.rightSection}>
+                            <Text style={styles.rightHeader}>Skills</Text>
+                            {inputsData.skills.map(skill => (
+                                <View style={styles.skillContainer}>
+                                    <Text>{skill.skillName}</Text>
+                                    <View style={{width: calcWidthProcent(skill.skillLvl), height: '3px', 
+                                                  backgroundColor: 'white'}}
+                                    />
+                                </View>
+                            ))}
+                            
+                        </View> : null
+                    }
+                    {inputsData.languages.length > 0 ?
+                        <View style={styles.rightSection}>
+                            <Text style={styles.rightHeader}>Languages</Text>
+                            {inputsData.languages.map(lang => (
+                                <View style={styles.skillContainer}>
+                                    <Text>{lang.language}</Text>
+                                    <View style={{width: calcWidthProcent(lang.langLvl), height: '3px', 
+                                                backgroundColor: 'white'}}
+                                    />
+                                </View>
+                            ))}
+                        </View> : null
+                    }
                 </View>
             </Page>
         </Document>

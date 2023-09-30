@@ -97,7 +97,7 @@ export default function Template2({ inputsData }) {
                             {inputsData.edu.map(edu => (
                                 <View style={styles.sectionContainer}>
                                     <Text>
-                                    {`${edu.Degree || ''}${edu.Degree && edu.School ? ', ' : ' '}${edu.School || ''}${edu.School && edu.City ? ', ' : ' '}${edu.City || ''}`}
+                                        {`${edu.Degree || ''}${edu.Degree && edu.School ? ', ' : ' '}${edu.School || ''}${edu.School && edu.City ? ', ' : ' '}${edu.City || ''}`}
                                     </Text>
                                     <Text style={styles.textSmall}>
                                         {`${edu.StartDate || ''} - ${edu.EndDate || 'present'}`}
@@ -113,7 +113,7 @@ export default function Template2({ inputsData }) {
                             {inputsData.job.map(job => (
                                 <View style={styles.sectionContainer}>
                                     <Text>
-                                    {`${job['Job title'] || ''}${job['Job title'] && job.Employer ? ', ' : ' '}${job.Employer || ''}${job.Employer && job.City ? ', ' : ' '}${job.City || ''}`}
+                                        {`${job['Job title'] || ''}${job['Job title'] && job.Employer ? ', ' : ' '}${job.Employer || ''}${job.Employer && job.City ? ', ' : ' '}${job.City || ''}`}
                                     </Text>
                                     <Text style={styles.textSmall}>
                                         {`${job.StartDate || ''} - ${job.EndDate || 'present'}`}
