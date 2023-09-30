@@ -19,7 +19,6 @@ export default function FormContainer({section, deleteSection, input, setInput})
                     <input onChange={(e)=>getInput(input, section.id, section.labels[0],
                         e.target.value, setInput)} type="text"
                         id={`${section.name}${section.id}`} 
-                        //value={inputObj.section.label[0]}
                     />
                 </div>
                 {section.name != 'course' ? (<div className="input-container">
