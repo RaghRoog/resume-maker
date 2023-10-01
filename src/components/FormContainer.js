@@ -38,14 +38,14 @@ export default function FormContainer({section, deleteSection, input, setInput})
                 <div className="input-container">
                     <label htmlFor={`${section.name}Start${section.id}`}>Start date</label>
                     <input onChange={(e)=>getInput(input, section.id, 'StartDate', 
-                        e.target.value, setInput)} type="date" 
+                        e.target.value, setInput)} type="month" 
                         id={`${section.name}Start${section.id}`} 
                     />
                 </div>
                 <div className="input-container">
                     <label htmlFor={`${section.name}End${section.id}`}>End date</label>
                     <input onChange={(e)=>getInput(input, section.id, 'EndDate', 
-                        e.target.value, setInput)} type="date" 
+                        e.target.value, setInput)} type="month" 
                         id={`${section.name}End${section.id}`} 
                     />
                 </div>
