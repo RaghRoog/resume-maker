@@ -15,12 +15,20 @@
         margin-bottom: 1rem;
         border-radius: 5px;
     }
-    .expand{
-        font-size: 1.2rem;
-        font-family: $p-font;
-        color: $accent;
+    .save-img-btn{
+        font-size: .8rem;
         width: fit-content;
-        margin-bottom: 1rem;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: $secondary;
+        border: none;
+        transition: $transition;
+        &:hover{
+            transform: translateY(2px);
+            border: 1px solid $accent;
+        }
     }
 }
 

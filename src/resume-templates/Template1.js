@@ -33,8 +33,11 @@ export default function Template1({ inputsData }) {
             <Page size="A4" style={styles.page}>
                 <View style={styles.left}>
                     <View style={styles.leftTop}>
-                        <Image style={{width: '40pt', height: 'auto', borderRadius: '50%'}} 
-                                src='../imgs/template-img.jpg'/>
+                        {inputsData.details.img != '' ?
+                            <Image style={{width: '40pt', height: 'auto', borderRadius: '50%'}} 
+                                src={inputsData.details.img}
+                            /> : null
+                        }
                         <Text style={{fontFamily: 'Poppins-bold', fontSize: '20px'}}>
                             {`${inputsData.details.fname} ${inputsData.details.lname}`}
                         </Text>

@@ -32,8 +32,11 @@ export default function Template2({ inputsData }) {
         <Document>
             <Page size="A4" style={styles.page}>
                 <View style={styles.right}>
-                    <Image style={{width: '60pt', height: 'auto', borderRadius: '5px', marginBottom: '10px'}} 
-                           src='../imgs/template-img.jpg'/>
+                    {inputsData.details.img != '' ?
+                        <Image style={{width: '60pt', height: 'auto', borderRadius: '5px', marginBottom: '10px'}} 
+                            src={inputsData.details.img}
+                        /> : null
+                    }
                     <View style={styles.rightSection}>
                         <Text style={styles.rightHeader}>Details</Text>
                         <Text>{inputsData.details.address}</Text>

@@ -14,8 +14,11 @@ export default function Template3({ inputsData }) {
         <Document>
             <Page size="A4" style={styles.page}>
                 <View style={styles.top}>
-                    <Image style={{width: '60pt', height: 'auto', borderRadius: '5px'}} 
-                        src='../imgs/template-img.jpg'/>
+                    {inputsData.details.img != '' ?
+                        <Image style={{width: '60pt', height: 'auto', borderRadius: '5px'}} 
+                            src={inputsData.details.img}
+                        /> : null
+                    }
                     <Text style={{fontFamily: 'bold', fontSize: '24px'}}>
                         {`${inputsData.details.fname } ${inputsData.details.lname}`}
                     </Text>

@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import FormContainer from "./FormContainer"
+import AvatarEditor from "react-avatar-editor"
 
 export default function InputSection({ getIsGenerated, getInputsData }) {
 
@@ -121,7 +122,8 @@ export default function InputSection({ getIsGenerated, getInputsData }) {
         tel: '',
         address: '',
         city: '',
-        country: ''
+        country: '',
+        img: ''
     })
     function getDetails(key, value){
         setDetailsInput({...detailsInput, [key]: value})
@@ -217,6 +219,24 @@ export default function InputSection({ getIsGenerated, getInputsData }) {
         console.log(inputData)
         getInputsData(inputData)
     }
+    //image input
+    let [scale, setScale] = useState(1)
+    let [image, setImage] = useState(null)
+    let [cropedImage, setCropedImage] = useState(null)
+    let editorRef = useRef()
+
+    let handleImageChange = (e) => {
+        let file = e.target.files[0]
+        if(file){
+            let imageUrl = URL.createObjectURL(file)
+            setImage(imageUrl)
+        }
+    }
+    let saveImageUrl = () => {
+        let canvas = editorRef.current.getImage()
+        let cropedImageUrl = canvas.toDataURL()
+        detailsInput.img = cropedImageUrl     
+    }
 
     return(
         <div id="inputSection" className="input-section container">
@@ -225,7 +245,22 @@ export default function InputSection({ getIsGenerated, getInputsData }) {
                 <form>
                     <div className="input-container">
                         <label htmlFor="photo">Photo</label>
-                        <input type="file" accept="image/*" id="photo" />
+                        <input onChange={handleImageChange} type="file" accept="image/*" id="photo" />
+                        {image && (
+                            <div style={{display: 'flex', flexDirection: 'column', gap: '.5rem',
+                                        alignItems: 'center', width: 'fit-content'}}
+                            >
+                                <AvatarEditor
+                                    ref={editorRef}
+                                    image={image}
+                                    width={200}
+                                    height={200}
+                                    scale={scale}
+                                    color={[216, 218, 253]}
+                                />
+                                <button className="save-img-btn" onClick={saveImageUrl}>Save image</button>
+                            </div>
+                        )}
                     </div>
                     <div className="input-container">
                         <label htmlFor="fname">First name</label>
