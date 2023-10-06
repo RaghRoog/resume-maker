@@ -1,5 +1,7 @@
 # Resume maker
 
+![project image](public/imgs/Zrzut ekranu 2023-10-01 234032.png)
+
 ## General info
 With this app you can easily and for free make your resume.
 
